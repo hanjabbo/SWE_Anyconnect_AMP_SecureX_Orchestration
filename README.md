@@ -53,18 +53,6 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 
 # How to use it
 
-## Stealthwatch Enterprise configuration
-Integrate SWE with SecureX 
-
-
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc1.png) 
-
-
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc2.png) 
-
-
-
-
 ## Action Orchestration configuration
 - Log into Action Orchestration 
 - Click on workflow tab
