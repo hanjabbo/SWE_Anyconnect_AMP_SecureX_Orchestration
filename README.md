@@ -67,7 +67,7 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Workflow2_.png) 
 
-- lLick on "HJ_SWE_Incident" and choose the incident to process this incident can be fed to the workflow manualy or through an automate incident collection
+- CLick on "HJ_SWE_Incident" and choose the incident to process this incident can be fed to the workflow manualy or through an automate incident collection
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Incident_.png)
 - On the right pannel you can paste the link of the incident or pass it as a variable
 
