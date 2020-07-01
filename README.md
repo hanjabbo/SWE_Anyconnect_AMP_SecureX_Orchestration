@@ -6,8 +6,6 @@ Disclaimer: This code requires to be implemented in SecureX, which will be avila
  
 # Authors:
 - Hanna Jabbour
-- Alicia Garcia Sastre
-- Remi Vacher
  
 
 # Motivation
