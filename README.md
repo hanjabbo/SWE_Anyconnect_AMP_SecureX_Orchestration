@@ -1,20 +1,15 @@
 ![License: CISCO](https://img.shields.io/badge/License-CISCO-blue.svg) [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/aligarci/swc_amp_securex_orchestration)
 
-# swc_amp_securex_orchestration
+# swe_anyconnect_amp_securex_orchestration
 Workflow of SecureX Action Orchestrator module.
-Disclaimer: This code requires to be implemented in SecureX, which will be avilable to the public on the June 30th.
+Disclaimer: This code requires to be implemented in SecureX Orcehstrator.
  
 # Authors:
 - Hanna Jabbour
  
 
 # Motivation
-The goal of this workflow is to trigger an automated response when we receive an email with an alarm triggered in Stealthwatch Cloud. Leveraging AMP for endpoints API, we will isolate the host and hence, protect our network.
-
-Having a SOC analyst reviewing the event and then taking a decision about the required mitigation is not fast enough. 
-We need to isolate the host from the network to reduce the threat ability to spread. 
-
-https://youtu.be/3dW6_CYSGR4
+The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm/Event. The alarm is shared from Stealhwatch to Cisco SecureX Incident Manager through the SWE SecureX integration implemented with Stealtwhatch version 7.2.1. The incident details are read and decoded by the SecureX Orchestrator, the information extracted includes the source IP of the alarm and the time frame, this information is then used to extract flows and process hashes from Stealthwatch, the process hashes and IPs are used to provide a response using AMP, The process hash is blocked across the enterprise and the host is isolated.  
 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/orchestration.png) 
@@ -26,7 +21,7 @@ https://youtu.be/3dW6_CYSGR4
 - The end device has AnyConnect and AMP for endpoint installed for endpoint security and connectivity
 - AnyConnect is integrated with SWE to share process information and flow information
 - Stealthwatch is monitoring the network end to end
-- Stealthwatch is integrated with CTR, SecureX and AO
+- Stealthwatch is integrated with Cisco Threat Resposne, SecureX Orcehstrator.
 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/scenario.png) 
@@ -39,14 +34,14 @@ https://youtu.be/3dW6_CYSGR4
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/steps.png) 
 
 
-1. Device initiate a suspicious behavior
-2. SWC triggers an alert on this communication and sends a notification to the admin
-3. Action Orchestrator (AO) parsing constantly email events. 
-4. When the alarm email is received, it will trigger the response workflow
-5. Parsing of endpoint IP from email
-6. Find AMP GUID that is the source of the malicious behavior
-7. Isolate host with AMP GUID
-8. Send a message to a webex teams room notifying about the endpoint isolation
+1. Device initiate a suspicious behavior (The device monitored by Stealthwatch, has AMP and Anyconnect installed)
+2. SWE triggers an alarm and send it to Threat Resposne as an incident
+3. SecureX Orcehstrator parse the incident details, indulding IP and time frame
+5. SecureX Orcehstrator query Stealthwatch for the flows and process hashes involved in the communication occuring at that time frame from that specific IP.
+6. Find AMP Identified (GUID) assosiated with the IP that is the source of the malicious behavior
+7. Block the Process Hashes extracted from SWE, using AMP
+7. Isolate host with AMP 
+8. Send a message to a webex teams room notifying about the endpoint isolation and the proceess hashes blocking
 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams.png) 
@@ -58,8 +53,8 @@ https://youtu.be/3dW6_CYSGR4
 
 # How to use it
 
-## Stealthwatch cloud configuration
-Configure Stealthwatch Cloud to send you an email every time an alert is triggered:
+## Stealthwatch Enterprise configuration
+Integrate SWE with SecureX 
 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc1.png) 
