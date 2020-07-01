@@ -81,7 +81,7 @@ Integrate SWE with SecureX
 
 - On the right pannel, you will be able to add the target and account keys of your AMP4E endpoints.
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/amp.png) 
-
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/amp.png) 
 
 - Click now on "Stealthwatch Cloud email", and modify the target id to match your email credentials
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/email.png) 
