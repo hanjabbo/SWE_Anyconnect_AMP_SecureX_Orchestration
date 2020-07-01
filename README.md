@@ -89,9 +89,6 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
    - Also add the room id of your webex room, where you want to post the message (You can obtain your room id going to https://developer.webex.com/docs/api/v1/rooms/get-room-details and pasting the name of your room)
    
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/id.png) 
-
-
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/id2.png)
+![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Webex_Room_ID.png)
 
 
