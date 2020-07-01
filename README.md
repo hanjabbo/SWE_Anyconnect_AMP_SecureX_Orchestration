@@ -24,7 +24,7 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 - Stealthwatch is integrated with Cisco Threat Resposne, SecureX Orcehstrator.
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/scenario.png) 
+![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/scenario.png) 
 
 
 
