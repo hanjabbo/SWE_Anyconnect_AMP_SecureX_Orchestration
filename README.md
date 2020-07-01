@@ -31,7 +31,7 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 # Workflow steps
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/steps.png) 
+![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Steps_.png) 
 
 
 1. Device initiate a suspicious behavior (The device monitored by Stealthwatch, has AMP and Anyconnect installed)
