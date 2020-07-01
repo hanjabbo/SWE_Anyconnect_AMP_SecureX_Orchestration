@@ -67,20 +67,20 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Workflow2_.png) 
 
-- CLick on "HJ_SWE_Incident" and choose the incident to process this incident can be fed to the workflow manualy or through an automate incident collection
+- lLick on "HJ_SWE_Incident" and choose the incident to process this incident can be fed to the workflow manualy or through an automate incident collection
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Incident_.png)
 - On the right pannel you can paste the link of the incident or pass it as a variable
 
--CLick on "SWE_Get_DomainID", on the right pannel you will be able to add or modify the target and account keys for your SWE installation
+-Click on "SWE_Get_DomainID", on the right pannel you will be able to add or modify the target and account keys for your SWE installation
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Domain_.png)
-- Aplly the same Target and account keys on  the "SWE_Flows_Process_Hashes"
+- Apply the same Target and account keys on  the "SWE_Flows_Process_Hashes"
 
 - Click on "HJ_Add_Hash_To_Block_Lists" On the right pannel, you will be able to add the target and account keys of your AMP4E endpoints.
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/HashBlock_.png) 
-- Aplly the same Target and account keys on  the "HJ_AMP_Get_Guid for IP" and "HJ_AMP-isolate host"
+- Apply the same Target and account keys on  the "HJ_AMP_Get_Guid for IP" and "HJ_AMP-isolate host"
 
 
-- Click on "Webex Teams Post a Message about isolation" and include:
+- Click on "Webex Teams Post a Message" and include:
 
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/WebeXTeams2_.png) 
 
