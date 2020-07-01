@@ -44,10 +44,10 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 8. Send a message to a webex teams room notifying about the endpoint isolation and the proceess hashes blocking
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams.png) 
+![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Webex_Teams_.png) 
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/workflow.png) 
+![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Workflow_.png) 
 
 
 
