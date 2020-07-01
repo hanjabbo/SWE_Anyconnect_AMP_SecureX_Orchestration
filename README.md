@@ -71,7 +71,7 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Incident_.png)
 - On the right pannel you can paste the link of the incident or pass it as a variable
 
--Click on "SWE_Get_DomainID", on the right pannel you will be able to add or modify the target and account keys for your SWE installation
+- Click on "SWE_Get_DomainID", on the right pannel you will be able to add or modify the target and account keys for your SWE installation
 ![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Domain_.png)
 - Apply the same Target and account keys on  the "SWE_Flows_Process_Hashes"
 
