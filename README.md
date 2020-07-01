@@ -12,7 +12,7 @@ Disclaimer: This code requires to be implemented in SecureX Orcehstrator.
 The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm/Event. The alarm is shared from Stealhwatch to Cisco SecureX Incident Manager through the SWE SecureX integration implemented with Stealtwhatch version 7.2.1. The incident details are read and parsed by the SecureX Orchestrator, the information extracted includes the source IP of the alarm and the time stamps. This information is then used to extract flows and process hashes from Stealthwatch, the process hashes and IPs are used to provide a response using AMP, The process hash is blocked across the enterprise and the host is isolated.  
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/Orchestration_.png) 
+![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Orchestration_png) 
 
 
 
