@@ -1,0 +1,1302 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01I9X47HNZVU23540YiSd56HrHaD2NXDi1D",
+    "name": "Automate SWE AMP trigger",
+    "title": "Automate SWE AMP trigger",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Automate SWE AMP trigger",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01IA1GSAG3KHL20jvDIfCyKRdGPnt88j3m0",
+        "name": "Calculate Date",
+        "title": "LastRunPlus5",
+        "type": "core.calculate_date",
+        "base_type": "activity",
+        "properties": {
+          "adjustment": 300,
+          "continue_on_failure": false,
+          "display_name": "LastRunPlus5",
+          "original_date": "$global.variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4.global.variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4$",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IANJULTZB197cEPnxpwv0ezE8AUE8Qzki",
+        "name": "Calculate Date",
+        "title": "OriginalDate",
+        "type": "core.calculate_date",
+        "base_type": "activity",
+        "properties": {
+          "adjustment": 0,
+          "continue_on_failure": false,
+          "display_name": "OriginalDate",
+          "original_date": "$global.variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4.global.variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4$",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IAN9EMU12O72sF1SzcysVx7gCoZJ2Db9H",
+        "name": "Set Variables",
+        "title": "UpdateLastRun",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "UpdateLastRun",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$global.variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4.global.variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4$",
+              "variable_value_new": "$activity.definition_activity_01IA1GSAG3KHL20jvDIfCyKRdGPnt88j3m0.output.result$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs",
+        "name": "SWE GetSecurityEvent Details",
+        "title": "SWE GetSecurityEvent Details",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "SWE GetSecurityEvent Details",
+          "input": {
+            "variable_workflow_01I8C4KYDKEQI2gP9nxMFCarUGoP4gOoC82": "102",
+            "variable_workflow_01I9VBO2WOZHR3D3qYEUQjFgdYcNYxdM6xP": "$activity.definition_activity_01IANJULTZB197cEPnxpwv0ezE8AUE8Qzki.output.result$",
+            "variable_workflow_01I9VBX7MT5W37DXN8dnLYbfrH4Bcf8VMil": "$activity.definition_activity_01IA1GSAG3KHL20jvDIfCyKRdGPnt88j3m0.output.result$",
+            "variable_workflow_01I9VCDUT4DCD1W94CZBvq5vyu0DVKxHrNm": "1035"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "execute_on_this_target": true,
+            "target_id": "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi",
+            "target_type": "web-service.endpoint"
+          },
+          "workflow_id": "definition_workflow_01I8C4KYPMIE129LhwdF6CXPsKDtMdUDd0I"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01IARE5WQVUI40L4T7OQy9TfbkID2I4GZzj",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01IARE62SIVFW205ajrAxrLGpUgm9RrOD7x",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.succeeded$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IAR077R61LE1gjJojnBkDKBEBVKiMdPSL",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01IAR07DRG1QV18cIYOEyjrzEzUCEHJPws2",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": {
+                          "left_operand": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.variable_workflow_01I9WCK0WE64L6QDPcOO1rXyfZBNruzehv3$",
+                          "operator": "ne",
+                          "right_operand": "$global.variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD.global.variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD$"
+                        },
+                        "operator": "and",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.variable_workflow_01I9WCK0WE64L6QDPcOO1rXyfZBNruzehv3$",
+                          "operator": "ne",
+                          "right_operand": "null"
+                        }
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01IAM05HFJUJY5lOZESaPZiQjxBJhjynkiR",
+                        "name": "Stealthwatch AMP Anyconnect v3",
+                        "title": "Stealthwatch AMP Anyconnect v3",
+                        "type": "workflow.sub_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Stealthwatch AMP Anyconnect v3",
+                          "input": {
+                            "variable_workflow_01IALSUJECIGV7Stea2ZwmnyEvkrXT1L24Q": "$activity.definition_activity_01IA1GSAG3KHL20jvDIfCyKRdGPnt88j3m0.output.result$",
+                            "variable_workflow_01IALT0HTAGVD4XD2GJSjzWf3g1ff45Wf4a": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.variable_workflow_01I9VDF73531Y4CtNbLRKiw0vLbPEnkZ2YE$",
+                            "variable_workflow_01IALT4B0K1CL0dXIp0tgCrhn5F5kq3AzEm": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.variable_workflow_01I9VDLJRJ2SK71IZhdOoMn4F5ADlFAJIi8$"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "no_target": true
+                          },
+                          "workflow_id": "definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y"
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01IAR34KKCU293k3n54yzQ5yKsrIfHKWw11",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$global.variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD.global.variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD$",
+                              "variable_value_new": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.variable_workflow_01I9WCK0WE64L6QDPcOO1rXyfZBNruzehv3$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01IAR07EZL0WT4c5baStxjkKiZ7djDSgyMb",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": {
+                          "left_operand": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.variable_workflow_01I9WCK0WE64L6QDPcOO1rXyfZBNruzehv3$",
+                          "operator": "eq",
+                          "right_operand": "$global.variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD.global.variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD$"
+                        },
+                        "operator": "or",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.variable_workflow_01I9WCK0WE64L6QDPcOO1rXyfZBNruzehv3$",
+                          "operator": "eq",
+                          "right_operand": "null"
+                        }
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01IAR2N6H6XW94Y4xWG9LBjD4XCbuZfDjcs",
+                        "name": "Completed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "continue_on_failure": false,
+                          "display_name": "Completed",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01IARE63Y45BD6VUVEJgYMmztbfhSyTxTda",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01I9X5UPBL0GZ5w9mpr9iFjDYIE44ln3UXs.output.succeeded$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IARHXEBDV6O5aM63Cb9eWM5hIjzaSncgS",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "continue_on_failure": false,
+                  "display_name": "Completed",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01HKCAJLNDADS11qk9GnyQIGldjuZ21lQwt"
+    ]
+  },
+  "categories": {
+    "category_01HKCAJLNDADS11qk9GnyQIGldjuZ21lQwt": {
+      "unique_name": "category_01HKCAJLNDADS11qk9GnyQIGldjuZ21lQwt",
+      "name": "StealthwatchEnterprise",
+      "title": "StealthwatchEnterprise",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "triggers": {
+    "triggerschedule_01I9X5M826CWE19WukmHh6jRt8EzGzhqQk1": {
+      "workflow_id": "definition_workflow_01I9X47HNZVU23540YiSd56HrHaD2NXDi1D",
+      "name": "Schedule",
+      "title": "",
+      "lowercase_name": "schedule.schedule",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_01I4XN17ZMA3321d0usEjEaIgYmX5b2y8ua",
+      "version": "",
+      "disabled": false,
+      "unique_name": "triggerschedule_01I9X5M826CWE19WukmHh6jRt8EzGzhqQk1",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_01I4XN17ZMA3321d0usEjEaIgYmX5b2y8ua": {
+      "unique_name": "schedule_01I4XN17ZMA3321d0usEjEaIgYmX5b2y8ua",
+      "name": "HJ_Every_5_minutes",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_recurring_01I4XKI7FLACF2fCbZTim7H1nNd1Tz6ZVuu",
+        "timezone": "Etc/GMT+0",
+        "starttime": "00:00",
+        "interval_hours": 0,
+        "interval_minutes": 5,
+        "number_of_times": 288,
+        "display_name": "HJ_Every_5_minutes",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
+  "calendars": {
+    "calendar_recurring_01I4XKI7FLACF2fCbZTim7H1nNd1Tz6ZVuu": {
+      "unique_name": "calendar_recurring_01I4XKI7FLACF2fCbZTim7H1nNd1Tz6ZVuu",
+      "name": "HJ_Calendar",
+      "title": "HJ_Calendar",
+      "base_type": "calendar",
+      "type": "calendar.recurring",
+      "properties": {
+        "date_range": {
+          "end_date": "2020-08-31",
+          "start_date": "2020-08-20"
+        },
+        "repeats": {
+          "every": 1,
+          "on": {
+            "day": "none",
+            "day_num": 0,
+            "day_of": "none"
+          },
+          "period": "daily"
+        }
+      },
+      "version": "1.0.0",
+      "object_type": "calendar_recurring"
+    }
+  },
+  "targets": {
+    "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi": {
+      "unique_name": "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi",
+      "name": "HJ_swdemo1",
+      "title": "HJ_swdemo1",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "HJ_swdemo1",
+        "host": "swdemo1.cisco-demos.com",
+        "no_runtime_user": true,
+        "port": 443,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU": {
+      "unique_name": "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU",
+      "name": "HJ_AMP",
+      "title": "HJ_AMP",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01GEUN3U7OX0K2cq6tSfymX6nKG3RLM3oTo",
+        "disable_certificate_validation": false,
+        "display_name": "HJ_AMP",
+        "host": "api.amp.cisco.com",
+        "no_runtime_user": false,
+        "path": "/v1/",
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01GEUN3U7OX0K2cq6tSfymX6nKG3RLM3oTo": {
+      "unique_name": "definition_runtime_user_01GEUN3U7OX0K2cq6tSfymX6nKG3RLM3oTo",
+      "name": "HJ_AMP",
+      "title": "HJ_AMP",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "HJ_AMP"
+      }
+    }
+  },
+  "variables": {
+    "variable_01G9I2JL7LTYO4KDKQIRuyylthGusgomMEE": {
+      "unique_name": "variable_01G9I2JL7LTYO4KDKQIRuyylthGusgomMEE",
+      "properties": {
+        "value": "admin",
+        "scope": "global",
+        "name": "SW_EN_SMC_Login",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01G9I35O6RBIO6EdXy9Y447bPifjMxKYygi": {
+      "unique_name": "variable_01G9I35O6RBIO6EdXy9Y447bPifjMxKYygi",
+      "properties": {
+        "value": "*****",
+        "scope": "global",
+        "name": "SW_EN_SMC_Pass",
+        "type": "datatype.secure_string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01HKC8JSBPNZC2r5lQwyQ86expCUBb2X234": {
+      "unique_name": "variable_01HKC8JSBPNZC2r5lQwyQ86expCUBb2X234",
+      "properties": {
+        "value": "*****",
+        "scope": "global",
+        "name": "HJ_Webex_Token",
+        "type": "datatype.secure_string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4": {
+      "unique_name": "variable_01IA1C0FVUAMC3Z7frRs0qcrk3QFNtGyxz4",
+      "properties": {
+        "value": "2020-08-28T16:55:00Z",
+        "scope": "global",
+        "name": "HJ_Last_Run",
+        "type": "datatype.date",
+        "is_required": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD": {
+      "unique_name": "variable_01IA1C9ZX1P2N1M7ic0sKd70w09VhtYw4KD",
+      "properties": {
+        "value": "0",
+        "scope": "global",
+        "name": "HJ_Event_ID",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y",
+        "name": "Stealthwatch AMP Anyconnect v3",
+        "title": "Stealthwatch AMP Anyconnect v3",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Source_IP",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01IALT0HTAGVD4XD2GJSjzWf3g1ff45Wf4a",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "Destination_IP",
+              "type": "datatype.string",
+              "is_required": true
+            },
+            "unique_name": "variable_workflow_01IALT4B0K1CL0dXIp0tgCrhn5F5kq3AzEm",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "Zero",
+              "scope": "local",
+              "name": "percentagecomplete",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01IALWJ3GL4DD04daa47Cc8ZOJJ07tTOcoN",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.date",
+            "properties": {
+              "scope": "input",
+              "name": "TimeStamp",
+              "type": "datatype.date",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01IALSUJECIGV7Stea2ZwmnyEvkrXT1L24Q",
+            "object_type": "variable_workflow"
+          }
+        ],
+        "properties": {
+          "atomic": {
+            "is_atomic": false
+          },
+          "delete_workflow_instance": false,
+          "display_name": "Stealthwatch AMP Anyconnect v3",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "specify_on_workflow_start": false,
+            "target_default": true
+          },
+          "target": {
+            "no_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01IA2L5G1LF3E6UtVhl4nV8ruxyly9eIDV7",
+            "name": "Group",
+            "title": "Get Token and Domain",
+            "type": "logic.group",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Get Token and Domain",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IA2L5OR9WNU0cW0PA7g0ZY4NeKJdtRnYW",
+                "name": "HTTP Request",
+                "title": "SW Login",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "username=$global.variable_01G9I2JL7LTYO4KDKQIRuyylthGusgomMEE.global.variable_01G9I2JL7LTYO4KDKQIRuyylthGusgomMEE$&password=$global.variable_01G9I35O6RBIO6EdXy9Y447bPifjMxKYygi.global.variable_01G9I35O6RBIO6EdXy9Y447bPifjMxKYygi$",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Accept",
+                      "value": "application/json"
+                    },
+                    {
+                      "name": "Content-Type",
+                      "value": "application/x-www-form-urlencoded"
+                    }
+                  ],
+                  "display_name": "SW Login",
+                  "method": "POST",
+                  "relative_url": "/token/v2/authenticate",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L5ZDBYLV2zc4bZE4UntnLiIsIhGwEl",
+                "name": "HTTP Request",
+                "title": "GetDomain API Call",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "cookie": [
+                    "$activity.definition_activity_01IA2L5OR9WNU0cW0PA7g0ZY4NeKJdtRnYW.output.cookie[0]$"
+                  ],
+                  "display_name": "GetDomain API Call",
+                  "method": "GET",
+                  "relative_url": "/sw-reporting/v1/tenants",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L67TNL592sR7uDo2xeSt2DQ4TzNxdI",
+                "name": "JSONPath Query",
+                "title": "GetDomainID",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "GetDomainID",
+                  "input_json": "$activity.definition_activity_01IA2L5ZDBYLV2zc4bZE4UntnLiIsIhGwEl.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "[\"data\"][1][\"id\"]",
+                      "jsonpath_query_name": "tenantid",
+                      "jsonpath_query_type": "integer"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01IA2L6F536HD7KS9Hmq8hG40KKWofVDs7Z",
+            "name": "Group",
+            "title": "Date Formating",
+            "type": "logic.group",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Date Formating",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IA2L6NGUYRK0hDXqqnXKMsFNUNbLGgcvk",
+                "name": "Format Date",
+                "title": "Format Date",
+                "type": "core.format_date",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Format Date",
+                  "format_string": "2006-01-02T15:04:05Z",
+                  "original_date": "$workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALSUJECIGV7Stea2ZwmnyEvkrXT1L24Q$",
+                  "skip_execution": false,
+                  "use_custom_format": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L6V3UPFB67jWCLpgjuSfshlNaaRa35",
+                "name": "Calculate Date",
+                "title": "Calculate Start Date",
+                "type": "core.calculate_date",
+                "base_type": "activity",
+                "properties": {
+                  "adjustment": -300,
+                  "continue_on_failure": false,
+                  "display_name": "Calculate Start Date",
+                  "original_date": "$activity.definition_activity_01IA2L6NGUYRK0hDXqqnXKMsFNUNbLGgcvk.output.result$",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L72VZEX36KNgLybXpy4FeTs8ZO1JNn",
+                "name": "Calculate Date",
+                "title": "Calculate End Date",
+                "type": "core.calculate_date",
+                "base_type": "activity",
+                "properties": {
+                  "adjustment": 0,
+                  "continue_on_failure": false,
+                  "display_name": "Calculate End Date",
+                  "original_date": "$activity.definition_activity_01IA2L6NGUYRK0hDXqqnXKMsFNUNbLGgcvk.output.result$",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01IA2L7AHZ3QG2P97BNBTBRsazoCz4bLPkD",
+            "name": "Group",
+            "title": "Steathwath Get Processs Hashes from Anyconnect",
+            "type": "logic.group",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Steathwath Get Processs Hashes from Anyconnect",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01IA2L7J4J2E57J8edahEupW5JySasCvYvR",
+                "name": "HTTP Request",
+                "title": "GetProcessHashes API Call",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"startDateTime\": \"$activity.definition_activity_01IA2L6V3UPFB67jWCLpgjuSfshlNaaRa35.output.result$\",\n\t \"endDateTime\": \"$activity.definition_activity_01IA2L72VZEX36KNgLybXpy4FeTs8ZO1JNn.output.result$\",\n\t  \"subject\": {\n\t       \"ipAddresses\": {\n\t          \"includes\": [\"$workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALT0HTAGVD4XD2GJSjzWf3g1ff45Wf4a$\"]\n\t            }\n\t        },\n\t   \"peer\": {\n\t\t     \"ipAddresses\": {\n\t\t        \"includes\": [\"$workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALT4B0K1CL0dXIp0tgCrhn5F5kq3AzEm$\"]\n              }\n\t        },\n\t\"recordLimit\": 10\n}",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "cookie": [
+                    "$activity.definition_activity_01IA2L5OR9WNU0cW0PA7g0ZY4NeKJdtRnYW.output.cookie[0]$"
+                  ],
+                  "display_name": "GetProcessHashes API Call",
+                  "method": "POST",
+                  "relative_url": "/sw-reporting/v2/tenants/$activity.definition_activity_01IA2L67TNL592sR7uDo2xeSt2DQ4TzNxdI.output.jsonpath_queries.tenantid$/flows/queries",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L7T0Q1ON3fTQaUBO8A27nuYM5egFSq",
+                "name": "JSONPath Query",
+                "title": "GetQueryID",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "GetQueryID",
+                  "input_json": "$activity.definition_activity_01IA2L7J4J2E57J8edahEupW5JySasCvYvR.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "[\"data\"][\"query\"][\"id\"]",
+                      "jsonpath_query_name": "Query-id",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L80LUY2S6ycbpb4Dwf2YegvLdssaWX",
+                "name": "While Loop",
+                "title": "While Loop",
+                "type": "logic.while",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "While Loop",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01IA2L86KXITH6IfOCyyMb9uYXm9EYF9JWm",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.local.variable_workflow_01IALWJ3GL4DD04daa47Cc8ZOJJ07tTOcoN$",
+                        "operator": "ne",
+                        "right_operand": "100"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01IA2L8BSHQ9W6ccxvGIU2opdU4R38TjmkZ",
+                        "name": "Sleep",
+                        "title": "Sleep",
+                        "type": "core.sleep",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Sleep",
+                          "skip_execution": false,
+                          "sleep_interval": 2
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01IA2L8INU8UW5ngACDhsqEE45EFkcdkzu6",
+                        "name": "HTTP Request",
+                        "title": "CheckQuery Completion API",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "cookie": [
+                            "$activity.definition_activity_01IA2L5OR9WNU0cW0PA7g0ZY4NeKJdtRnYW.output.cookie[0]$"
+                          ],
+                          "display_name": "CheckQuery Completion API",
+                          "method": "GET",
+                          "relative_url": "sw-reporting/v2/tenants/$activity.definition_activity_01IA2L67TNL592sR7uDo2xeSt2DQ4TzNxdI.output.jsonpath_queries.tenantid$/flows/queries/$activity.definition_activity_01IA2L7T0Q1ON3fTQaUBO8A27nuYM5egFSq.output.jsonpath_queries.Query-id$",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi"
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01IA2L8S1QY926M9YcPS6U13Bm743Rq2qoD",
+                        "name": "JSONPath Query",
+                        "title": "GetCompletionPercentage",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "GetCompletionPercentage",
+                          "input_json": "$activity.definition_activity_01IA2L8INU8UW5ngACDhsqEE45EFkcdkzu6.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "[\"data\"][\"query\"][\"percentComplete\"]",
+                              "jsonpath_query_name": "percentcompleteloop",
+                              "jsonpath_query_type": "string"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01IA2L902A5F004GBtosK137mcXRNgLQEX0",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.local.variable_workflow_01IALWJ3GL4DD04daa47Cc8ZOJJ07tTOcoN$",
+                              "variable_value_new": "$activity.definition_activity_01IA2L8S1QY926M9YcPS6U13Bm743Rq2qoD.output.jsonpath_queries.percentcompleteloop$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01IA2L98XRS3U4Y5p1ioUxJkvvCrvr9gIPj",
+                "name": "HTTP Request",
+                "title": "GetResults",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "cookie": [
+                    "$activity.definition_activity_01IA2L5OR9WNU0cW0PA7g0ZY4NeKJdtRnYW.output.cookie[0]$"
+                  ],
+                  "display_name": "GetResults",
+                  "method": "GET",
+                  "relative_url": "sw-reporting/v2/tenants/$activity.definition_activity_01IA2L67TNL592sR7uDo2xeSt2DQ4TzNxdI.output.jsonpath_queries.tenantid$/flows/queries/$activity.definition_activity_01IA2L7T0Q1ON3fTQaUBO8A27nuYM5egFSq.output.jsonpath_queries.Query-id$/results",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01G7XHGNTQDH45YYxCKiLHsDK1ZFgYkD4yi"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L9IB894O2vWtfLptoFvmVHRP8ntTRU",
+                "name": "JSONPath Query",
+                "title": "GetFlows",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "GetFlows",
+                  "input_json": "$activity.definition_activity_01IA2L98XRS3U4Y5p1ioUxJkvvCrvr9gIPj.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "[\"data\"][\"flows\"]",
+                      "jsonpath_query_name": "FlowTable",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01IA2L9QGA5WQ4gMG206fpdQj9wcoEo7OG4",
+                "name": "Execute Python Script",
+                "title": "ParseProcessHashes",
+                "type": "python3.script",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "ParseProcessHashes",
+                  "script": "import json\nresults = $activity.definition_activity_01IA2L98XRS3U4Y5p1ioUxJkvvCrvr9gIPj.output.response_body$[\"data\"][\"flows\"]\nprocesseshasheslist = []\nfor i in range(len(results)):\n       if  \"processHash\" in results[i][\"subject\"]:\n            print(results[i][\"subject\"][\"processHash\"])\n            processeshasheslist.append(results[i][\"subject\"][\"processHash\"])",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01IA2L9XZ1ZQQ1mkTON7suE9L4fMoZD64xc",
+            "name": "Parallel Block",
+            "title": "Respone Block",
+            "type": "logic.parallel",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Respone Block",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01IA2LA3VBZYL36zlEZHEOMlAxtGA5QqAH3",
+                "name": "Parallel Branch",
+                "title": "BlockHost",
+                "type": "logic.parallel_block",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "BlockHost",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01IA2LA832J125ty9JjniqgY4dWOI3js5YM",
+                    "name": "Group",
+                    "title": "Group",
+                    "type": "logic.group",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Group",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01IA2LAGQC66V04hkOfqHBzTX2e5FmlUBO8",
+                        "name": "HTTP Request",
+                        "title": "GetAMPGuidAPICall",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "content_type": "application/json",
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "display_name": "GetAMPGuidAPICall",
+                          "method": "GET",
+                          "relative_url": "computers",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU"
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01IA2LANPRPIT28aRyTFnn8KFVx17oiCuwD",
+                        "name": "JSONPath Query",
+                        "title": "ExtractAMPGuid",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "ExtractAMPGuid",
+                          "input_json": "$activity.definition_activity_01IA2LAGQC66V04hkOfqHBzTX2e5FmlUBO8.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$..[?(@.internal_ips[0]==\"$workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALT0HTAGVD4XD2GJSjzWf3g1ff45Wf4a$\")].connector_guid",
+                              "jsonpath_query_name": "ampguid",
+                              "jsonpath_query_type": "string"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01IA2LAZ57KW64gRVecud4Cd25wRDDCeyAR",
+                        "name": "AMP - Isolate Host",
+                        "title": "AMP - Isolate Host",
+                        "type": "workflow.atomic_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "AMP - Isolate Host",
+                          "input": {
+                            "variable_workflow_01FLAVEEVLIML1kDED2T9JctB4oQUWBVvaQ": "$activity.definition_activity_01IA2LANPRPIT28aRyTFnn8KFVx17oiCuwD.output.jsonpath_queries.ampguid$"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU",
+                            "target_type": "web-service.endpoint"
+                          },
+                          "workflow_id": "definition_workflow_01FLAVEFJ8QLQ7UEi6gFNp1yotu1K18VEZS"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01IA2LB7JJSSC0avnuhSAOEj29fuWDfPdAb",
+                "name": "Parallel Branch",
+                "title": "BlockHashes",
+                "type": "logic.parallel_block",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "BlockHashes",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01IA2LBCQW4K90SkfhH1Qcq7umTYE6sb4Cp",
+                    "name": "HTTP Request",
+                    "title": "Get_File_HashList",
+                    "type": "web-service.http_request",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "allow_auto_redirect": true,
+                      "continue_on_error_status_code": false,
+                      "continue_on_failure": false,
+                      "display_name": "Get_File_HashList",
+                      "method": "GET",
+                      "relative_url": "file_lists/simple_custom_detections",
+                      "runtime_user": {
+                        "override_target_runtime_user": false,
+                        "target_default": true
+                      },
+                      "skip_execution": false,
+                      "target": {
+                        "override_workflow_target": true,
+                        "target_id": "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU"
+                      }
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01IA2LBJOTAE23yN3XnQoXSTAikDJlRlTZ3",
+                    "name": "JSONPath Query",
+                    "title": "ProcessFileHashList",
+                    "type": "corejava.jsonpathquery",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "ProcessFileHashList",
+                      "input_json": "$activity.definition_activity_01IA2LBCQW4K90SkfhH1Qcq7umTYE6sb4Cp.output.response_body$",
+                      "jsonpath_queries": [
+                        {
+                          "jsonpath_query": "['data'][0]['guid']",
+                          "jsonpath_query_name": "SimpleDetectionGuid",
+                          "jsonpath_query_type": "string"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01IA2LBSFF5CL60xB8GmKkS1w7ipn9j0bgo",
+                    "name": "HTTP Request",
+                    "title": "Add_Hash_To_Simple_Detection",
+                    "type": "web-service.http_request",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "allow_auto_redirect": true,
+                      "continue_on_error_status_code": false,
+                      "continue_on_failure": true,
+                      "display_name": "Add_Hash_To_Simple_Detection",
+                      "method": "POST",
+                      "relative_url": "file_lists/$activity.definition_activity_01IA2LBJOTAE23yN3XnQoXSTAikDJlRlTZ3.output.jsonpath_queries.SimpleDetectionGuid$/files/$activity.definition_activity_01IA2L9QGA5WQ4gMG206fpdQj9wcoEo7OG4.output.response_body$",
+                      "runtime_user": {
+                        "override_target_runtime_user": false,
+                        "target_default": true
+                      },
+                      "skip_execution": false,
+                      "target": {
+                        "override_workflow_target": true,
+                        "target_id": "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU"
+                      }
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01IA2LC3BB2CK2b1fVd8jh7Zl51XulPteGw",
+                    "name": "HTTP Request",
+                    "title": "Get_App_HashList",
+                    "type": "web-service.http_request",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "allow_auto_redirect": true,
+                      "continue_on_error_status_code": false,
+                      "continue_on_failure": false,
+                      "display_name": "Get_App_HashList",
+                      "method": "GET",
+                      "relative_url": "file_lists/application_blocking",
+                      "runtime_user": {
+                        "override_target_runtime_user": false,
+                        "target_default": true
+                      },
+                      "skip_execution": false,
+                      "target": {
+                        "override_workflow_target": true,
+                        "target_id": "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU"
+                      }
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01IA2LCAD0NOS6mXcMrhvi82EXLXDm5wg3Z",
+                    "name": "JSONPath Query",
+                    "title": "ProcessAppHashList",
+                    "type": "corejava.jsonpathquery",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "ProcessAppHashList",
+                      "input_json": "$activity.definition_activity_01IA2LC3BB2CK2b1fVd8jh7Zl51XulPteGw.output.response_body$",
+                      "jsonpath_queries": [
+                        {
+                          "jsonpath_query": "['data'][0]['guid']",
+                          "jsonpath_query_name": "AppHashList",
+                          "jsonpath_query_type": "string"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01IA2LCJ7F7IU3oy2NBi2xCtXnOnjRE6qG5",
+                    "name": "HTTP Request",
+                    "title": "Add_Hash_To_App_Blocking",
+                    "type": "web-service.http_request",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "allow_auto_redirect": true,
+                      "continue_on_error_status_code": false,
+                      "continue_on_failure": true,
+                      "display_name": "Add_Hash_To_App_Blocking",
+                      "method": "POST",
+                      "relative_url": "file_lists/$activity.definition_activity_01IA2LCAD0NOS6mXcMrhvi82EXLXDm5wg3Z.output.jsonpath_queries.AppHashList$/files/$activity.definition_activity_01IA2L9QGA5WQ4gMG206fpdQj9wcoEo7OG4.output.response_body$",
+                      "runtime_user": {
+                        "override_target_runtime_user": false,
+                        "target_default": true
+                      },
+                      "skip_execution": false,
+                      "target": {
+                        "override_workflow_target": true,
+                        "target_id": "definition_target_01GEUND107G265vBaDz3TdwVipMBzvl5zPU"
+                      }
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01IA2LCXI2CI27fRIlQHfiNQe4BWrRZYMrK",
+            "name": "Webex Teams - Post Message to Room",
+            "title": "Webex Teams - Post Message to Room",
+            "type": "workflow.atomic_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Webex Teams - Post Message to Room",
+              "input": {
+                "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$global.variable_01HKC8JSBPNZC2r5lQwyQ86expCUBb2X234.global.variable_01HKC8JSBPNZC2r5lQwyQ86expCUBb2X234$",
+                "variable_workflow_01FGYY44G3TK951Crpnd8g2izonyM4bFtpW": "Y2lzY29zcGFyazovL3VzL1JPT00vZThmOGEzYjAtYmFiNC0xMWVhLWI4ZjQtYmYxN2M1M2I1YWI0",
+                "variable_workflow_01FGYY44G3UPV3heGGc3vXCV47YL5WoI2X6": "Automated SWE Incident Workflow :   SWE Event : Source IP: $workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALT0HTAGVD4XD2GJSjzWf3g1ff45Wf4a$ that triggered This Event   was Isolated. The - File Hash: $activity.definition_activity_01IA2L9QGA5WQ4gMG206fpdQj9wcoEo7OG4.output.response_body$Has been blocked. The DestinationIP: $workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALT4B0K1CL0dXIp0tgCrhn5F5kq3AzEm$",
+                "variable_workflow_01FGYZ9BV4QTP19CuMwcW8QywvCP9ymx2BZ": "Automated SWE Incident Workflow :   SWE Event Source IP: $workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALT0HTAGVD4XD2GJSjzWf3g1ff45Wf4a$ that triggered This Event   was Isolated. The - File Hash: $activity.definition_activity_01IA2L9QGA5WQ4gMG206fpdQj9wcoEo7OG4.output.response_body$Has been blocked. The DestinationIP:$workflow.definition_workflow_01IA2KYOVROXI01slp8tVnNERQGKy08Tg7Y.input.variable_workflow_01IALT4B0K1CL0dXIp0tgCrhn5F5kq3AzEm$"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01FWYLOO0J2XM7SH55NFSKhqCgLoFpGLcPt",
+                "target_type": "web-service.endpoint"
+              },
+              "workflow_id": "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_01HKCAJLNDADS11qk9GnyQIGldjuZ21lQwt"
+        ]
+      }
+    }
+  ],
+  "atomic_workflows": [
+    "definition_workflow_01I8C4KYPMIE129LhwdF6CXPsKDtMdUDd0I",
+    "definition_workflow_01FLAVEFJ8QLQ7UEi6gFNp1yotu1K18VEZS",
+    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
+  ]
+}
