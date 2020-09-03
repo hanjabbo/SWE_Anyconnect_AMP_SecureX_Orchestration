@@ -62,22 +62,10 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 - Paste JSON file content into text box - First Import SWE GetSecurityEvent Details.json Then Import Automate SWE AMP trigger.json
 - Check "import as a new workflow (clone)
 - Click on import
-- Now the workflow is imported. You can click on it and will be able to modify it:
+- Once Prompted for your AMP credentials use the API Credentials for your AMP enviorment
+- Once prompted for your Stealthwatch credentials use your admin user and password
+- Now the workflow is imported. You can click on it and will be able to modify it
 
-
-![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Workflow2_.png) 
-
-- CLick on "HJ_SWE_Incident" and choose the incident to process this incident can be fed to the workflow manualy or through an automate incident collection
-![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Incident_.png)
-- On the right pannel you can paste the link of the incident or pass it as a variable
-
-- Click on "SWE_Get_DomainID", on the right pannel you will be able to add or modify the target and account keys for your SWE installation
-![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/Domain_.png)
-- Apply the same Target and account keys on  the "SWE_Flows_Process_Hashes"
-
-- Click on "HJ_Add_Hash_To_Block_Lists" On the right pannel, you will be able to add the target and account keys of your AMP4E endpoints.
-![alt text](https://github.com/hanjabbo/SWE_Anyconnect_AMP_SecureX_Orchestration/blob/master/HashBlock_.png) 
-- Apply the same Target and account keys on  the "HJ_AMP_Get_Guid for IP" and "HJ_AMP-isolate host"
 
 
 - Click on "Webex Teams Post a Message" and include:
