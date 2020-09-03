@@ -59,7 +59,7 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 - Click on workflow tab
 - Click on import
 - Import from: "browse"
-- Paste JSON file content into text box
+- Paste JSON file content into text box - First Import SWE GetSecurityEvent Details.json Then Import Automate SWE AMP trigger.json
 - Check "import as a new workflow (clone)
 - Click on import
 - Now the workflow is imported. You can click on it and will be able to modify it:
