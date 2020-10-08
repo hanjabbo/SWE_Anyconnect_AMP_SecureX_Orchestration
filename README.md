@@ -60,7 +60,7 @@ The goal of this workflow is to trigger a response based on a Stealtwhatch Alarm
 - Click on import
 - Import from: "browse"
 - Paste JSON file content into text box - First Import SWE GetSecurityEvent Details.json Then Import Automate SWE AMP trigger.json
-- Check "import as a new workflow (clone)
+- Check "import as a new workflow (clone) when importing the "Automate SWE AMP Trigger.Json" only
 - Click on import
 - Once Prompted for your AMP credentials use the API Credentials for your AMP enviorment
 - Once prompted for your Stealthwatch credentials use your admin user and password
